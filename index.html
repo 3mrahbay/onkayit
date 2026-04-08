@@ -1274,14 +1274,14 @@ html, body {
 <footer class="footer" style="margin-top:0">
   <div class="footer-quote">"Her Çocuk Bir Çiçek — Nasıl Açacağını Seçmek Ona Ait."</div>
   <div class="footer-sub" style="margin-top:8px">Bir Çiçek Koleji Anaokulu · Montessori & Orman Okulu · İstanbul Tuzla · bircicekkoleji.com</div>
-  <div class="footer-sub" style="margin-top:4px">Aydınlı Mahallesi Bahçeler Sk. No: 45 Tuzla - İstanbul · 0555 103 54 57 · <a href="/cdn-cgi/l/email-protection#197c69766a6d78597b706b7a707a7c727276757c7370377a7674" style="color:#9ab89a"><span class="__cf_email__" data-cfemail="ec899c839f988dac8e859e8f858f8987878380898685c28f8381">[email&#160;protected]</span></a></div>
+  <div class="footer-sub" style="margin-top:4px">Aydınlı Mahallesi Bahçeler Sk. No: 45 Tuzla - İstanbul · 0555 103 54 57 · <a href="mailto:eposta@bircicekkoleji.com" style="color:#9ab89a">eposta@bircicekkoleji.com</a></div>
   <div style="margin-top:24px;border-radius:14px;overflow:hidden;max-width:600px;margin-left:auto;margin-right:auto">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.5!2d29.3!3d40.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zQXlkxLFubMSxIE1haGFsbGVzaSBCYWjDp2VsZXIgU2suIE5vOiA0NSBUdXpsYQ!5e0!3m2!1str!2str!4v1234567890" 
       width="100%" height="200" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
 function openVideoModal(){var ov=document.getElementById('video-modal-overlay'),mo=document.getElementById('video-modal'),ifr=document.getElementById('video-modal-iframe');if(!ov||!mo||!ifr)return;ifr.src='https://www.youtube-nocookie.com/embed/ImVghOXyVHs?autoplay=1&rel=0&modestbranding=1&playsinline=1';ov.style.display='block';mo.style.display='block';document.body.style.overflow='hidden';}
 function closeVideoModal(){var ov=document.getElementById('video-modal-overlay'),mo=document.getElementById('video-modal'),ifr=document.getElementById('video-modal-iframe');if(ov)ov.style.display='none';if(mo)mo.style.display='none';if(ifr)ifr.src='';document.body.style.overflow='';}
@@ -1302,4 +1302,7 @@ window.addEventListener('scroll',animateBars);animateBars();
 function updateCountdown(){var hedef=new Date('2026-04-30T23:59:59'),fark=hedef-new Date();function pad(n){return n<10?'0'+n:''+n;}var ids=['cd-gun','cd-saat','cd-dk','cd-sn'];if(fark<=0){ids.forEach(function(id){var e=document.getElementById(id);if(e)e.textContent='00';});return;}[Math.floor(fark/86400000),Math.floor((fark%86400000)/3600000),Math.floor((fark%3600000)/60000),Math.floor((fark%60000)/1000)].forEach(function(v,i){var e=document.getElementById(ids[i]);if(e)e.textContent=pad(v);});}
 updateCountdown();setInterval(updateCountdown,1000);
 function openModal(type){var ov=document.getElementById('modal-overlay'),mo=document.getElementById('modal-'+type);if(!ov||!mo)return;ov.style.display='block';mo.style.display='block';document.body.style.overflow='hidden';}
-function closeModal(){var ov=document.getElementById('modal-overlay');if(ov)ov.style.display='none';['yuzyuze','online'].forEach(function(t){var m=document.getElementById('modal-'+t);if(m)m.style.display='non
+function closeModal(){var ov=document.getElementById('modal-overlay');if(ov)ov.style.display='none';['yuzyuze','online'].forEach(function(t){var m=document.getElementById('modal-'+t);if(m)m.style.display='none';});document.body.style.overflow='';}
+</script>
+</body>
+</html>
