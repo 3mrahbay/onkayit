@@ -189,12 +189,12 @@ body{font-family:'DM Sans',sans-serif;background:#f7f5f0;color:#1a2e1a;overflow-
 .fark-orman .sec-title{color:#f0ede6}
 .fark-orman .sec-title em{color:#8dd98d}
 .fark-orman .sec-sub{color:#9ab89a}
-.fark-card-wide{max-width:1100px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.fark-card-wide{max-width:1100px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .fark-img{border-radius:20px;overflow:hidden;width:100%;aspect-ratio:3/2;position:relative;cursor:pointer}
 .fark-img img{width:100%;height:100%;object-fit:cover;display:block}
-.fark-img .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25);opacity:0;transition:opacity 0.3s}
-.fark-img:hover .play-overlay{opacity:1}
-.fark-img .play-circle{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.2);border:2px solid rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;transition:transform 0.2s}
+.fark-img .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.15);opacity:1;transition:all 0.3s}
+.fark-img:hover .play-overlay{background:rgba(0,0,0,0.3)}
+.fark-img .play-circle{width:60px;height:60px;border-radius:50%;background:rgba(220,38,38,0.85);border:none;display:flex;align-items:center;justify-content:center;transition:transform 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
 .fark-img:hover .play-circle{transform:scale(1.1)}
 .fark-img .play-tri{width:0;height:0;border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent #fff;margin-left:3px}
 .fark-content{}
@@ -214,7 +214,7 @@ body{font-family:'DM Sans',sans-serif;background:#f7f5f0;color:#1a2e1a;overflow-
 .fark-montessori .sec-title{color:#f0ede6}
 .fark-montessori .sec-title em{color:#8ab4f8}
 .fark-montessori .sec-sub{color:#9ab8d8}
-.fark-card-wide-rev{max-width:1100px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.fark-card-wide-rev{max-width:1100px;margin:48px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 
 /* Ahşap Atölye — Sarı/Altın */
 .fark-ahsap{background:#1a0e02;padding:80px 40px;position:relative;overflow:hidden}
@@ -1202,6 +1202,7 @@ html, body {
 
 
 
+<div id="modal-overlay-fark1" onclick="closeFarkVideo('fark1')" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7)"></div>
 <div id="modal-fark1" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;width:min(900px,95vw);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7)">
   <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#111">
     <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f0ede6;font-style:italic">Video</div>
@@ -1215,6 +1216,7 @@ html, body {
   </div>
 </div>
 
+<div id="modal-overlay-fark2" onclick="closeFarkVideo('fark2')" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7)"></div>
 <div id="modal-fark2" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;width:min(900px,95vw);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7)">
   <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#111">
     <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f0ede6;font-style:italic">Video</div>
@@ -1228,6 +1230,7 @@ html, body {
   </div>
 </div>
 
+<div id="modal-overlay-fark3" onclick="closeFarkVideo('fark3')" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7)"></div>
 <div id="modal-fark3" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;width:min(900px,95vw);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7)">
   <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#111">
     <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f0ede6;font-style:italic">Video</div>
@@ -1241,6 +1244,7 @@ html, body {
   </div>
 </div>
 
+<div id="modal-overlay-fark4" onclick="closeFarkVideo('fark4')" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7)"></div>
 <div id="modal-fark4" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;width:min(900px,95vw);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7)">
   <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#111">
     <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f0ede6;font-style:italic">Video</div>
@@ -1254,6 +1258,7 @@ html, body {
   </div>
 </div>
 
+<div id="modal-overlay-fark5" onclick="closeFarkVideo('fark5')" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7)"></div>
 <div id="modal-fark5" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10000;width:min(900px,95vw);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.7)">
   <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#111">
     <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f0ede6;font-style:italic">Video</div>
