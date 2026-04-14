@@ -1048,7 +1048,7 @@ html, body {
       <div class="cd-box"><span class="cd-num" id="cd-dk">00</span><span class="cd-label">Dakika</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-sn">00</span><span class="cd-label">Saniye</span></div>
     </div>
-    <div class="cd-note">Erken kayıt son tarihi: 30 Nisan 2026</div>
+    <div class="cd-note">Erken kayıt son tarihi: 15 Mayıs 2026</div>
   </div>
 
   <div class="steps">
@@ -1299,7 +1299,7 @@ function toggleSss(el){var item=el.parentElement,open=item.classList.contains('o
 var barsOk=false;
 function animateBars(){if(barsOk)return;var bars=document.querySelectorAll('.bar-fill');if(!bars.length)return;if(bars[0].getBoundingClientRect().top<window.innerHeight){barsOk=true;bars.forEach(function(b){var w=b.style.width;b.style.width='0';setTimeout(function(){b.style.transition='width 1.2s ease';b.style.width=w;},50);});}}
 window.addEventListener('scroll',animateBars);animateBars();
-function updateCountdown(){var hedef=new Date('2026-04-30T23:59:59'),fark=hedef-new Date();function pad(n){return n<10?'0'+n:''+n;}var ids=['cd-gun','cd-saat','cd-dk','cd-sn'];if(fark<=0){ids.forEach(function(id){var e=document.getElementById(id);if(e)e.textContent='00';});return;}[Math.floor(fark/86400000),Math.floor((fark%86400000)/3600000),Math.floor((fark%3600000)/60000),Math.floor((fark%60000)/1000)].forEach(function(v,i){var e=document.getElementById(ids[i]);if(e)e.textContent=pad(v);});}
+function updateCountdown(){var hedef=new Date('2026-05-15T23:59:59'),fark=hedef-new Date();function pad(n){return n<10?'0'+n:''+n;}var ids=['cd-gun','cd-saat','cd-dk','cd-sn'];if(fark<=0){ids.forEach(function(id){var e=document.getElementById(id);if(e)e.textContent='00';});return;}[Math.floor(fark/86400000),Math.floor((fark%86400000)/3600000),Math.floor((fark%3600000)/60000),Math.floor((fark%60000)/1000)].forEach(function(v,i){var e=document.getElementById(ids[i]);if(e)e.textContent=pad(v);});}
 updateCountdown();setInterval(updateCountdown,1000);
 function openModal(type){var ov=document.getElementById('modal-overlay'),mo=document.getElementById('modal-'+type);if(!ov||!mo)return;ov.style.display='block';mo.style.display='block';document.body.style.overflow='hidden';}
 function closeModal(){var ov=document.getElementById('modal-overlay');if(ov)ov.style.display='none';['yuzyuze','online'].forEach(function(t){var m=document.getElementById('modal-'+t);if(m)m.style.display='none';});document.body.style.overflow='';}
