@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KVKK Aydınlatma Metni ve Gizlilik Politikası · Bir Çiçek Koleji Anaokulu</title>
+<meta name="description" content="Bir Çiçek Koleji Anaokulu kişisel verilerin korunması aydınlatma metni, gizlilik politikası ve çerez politikası.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --koyu:#2D5E3E;
+  --yesil:#4A7C59;
+  --acik:#7CB97C;
+  --kagit:#FBFAF6;
+  --metin:#2A2E2B;
+  --soluk:#6B7570;
+  --cizgi:#E3E7E1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  background:var(--kagit);
+  color:var(--metin);
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Başlık ── */
+.ust{
+  background:var(--koyu);
+  color:#fff;
+  padding:56px 24px 48px;
+}
+.ust .ic{max-width:1080px;margin:0 auto}
+.marka{
+  font-family:'Quicksand',sans-serif;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--acik);
+  margin:0 0 18px;
+}
+.ust h1{
+  font-family:'Quicksand',sans-serif;
+  font-weight:600;
+  font-size:clamp(28px,4.5vw,44px);
+  line-height:1.2;
+  margin:0 0 14px;
+  max-width:20ch;
+}
+.ust p{
+  margin:0;
+  color:#C6DACC;
+  font-size:15px;
+  max-width:60ch;
+}
+
+/* ── Gövde ── */
+.sayfa{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 24px 96px;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:56px;
+  align-items:start;
+}
+@media (max-width:860px){
+  .sayfa{grid-template-columns:1fr;gap:0}
+}
+
+/* ── Yan içindekiler ── */
+.icindekiler{
+  position:sticky;
+  top:32px;
+  padding-top:48px;
+  font-size:14px;
+}
+@media (max-width:860px){
+  .icindekiler{
+    position:static;
+    padding:32px 0 8px;
+    border-bottom:1px solid var(--cizgi);
+  }
+}
+.icindekiler h2{
+  font-family:'Quicksand',sans-serif;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--soluk);
+  margin:0 0 14px;
+  font-weight:700;
+}
+.icindekiler ol{list-style:none;margin:0;padding:0;counter-reset:ic}
+.icindekiler li{counter-increment:ic;margin-bottom:9px;line-height:1.4}
+.icindekiler a{
+  color:var(--soluk);
+  text-decoration:none;
+  display:block;
+  padding-left:26px;
+  position:relative;
+  transition:color .15s;
+}
+.icindekiler a::before{
+  content:counter(ic,decimal-leading-zero);
+  position:absolute;left:0;top:0;
+  font-family:'Quicksand',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  color:var(--acik);
+  letter-spacing:.04em;
+}
+.icindekiler a:hover,.icindekiler a:focus{color:var(--koyu)}
+
+/* ── Ana metin ── */
+main{padding-top:48px;counter-reset:bolum;min-width:0}
+section{
+  counter-increment:bolum;
+  padding:32px 0;
+  border-top:1px solid var(--cizgi);
+  scroll-margin-top:24px;
+}
+section:first-of-type{border-top:none;padding-top:8px}
+h2.bolum{
+  font-family:'Quicksand',sans-serif;
+  font-weight:600;
+  font-size:22px;
+  line-height:1.3;
+  color:var(--koyu);
+  margin:0 0 18px;
+  padding-left:44px;
+  position:relative;
+}
+h2.bolum::before{
+  content:counter(bolum,decimal-leading-zero);
+  position:absolute;left:0;top:2px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--acik);
+  letter-spacing:.04em;
+}
+h3{
+  font-family:'Quicksand',sans-serif;
+  font-weight:600;
+  font-size:16px;
+  color:var(--yesil);
+  margin:26px 0 10px;
+}
+p{margin:0 0 16px;max-width:68ch}
+ul{margin:0 0 16px;padding-left:20px;max-width:68ch}
+li{margin-bottom:8px}
+strong{font-weight:500;color:var(--koyu)}
+a{color:var(--yesil)}
+
+/* Künye kutusu */
+.kunye{
+  background:#fff;
+  border:1px solid var(--cizgi);
+  border-left:3px solid var(--yesil);
+  border-radius:4px;
+  padding:22px 26px;
+  margin:0 0 8px;
+  max-width:68ch;
+}
+.kunye dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:15px}
+.kunye dt{color:var(--soluk);white-space:nowrap}
+.kunye dd{margin:0;color:var(--metin)}
+@media (max-width:520px){
+  .kunye dl{grid-template-columns:1fr;gap:2px 0}
+  .kunye dt{margin-top:10px;font-size:13px}
+}
+
+/* Tablo */
+.tablo{overflow-x:auto;margin:0 0 18px;max-width:68ch}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:420px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--cizgi);vertical-align:top}
+th{
+  font-family:'Quicksand',sans-serif;
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--soluk);
+}
+
+/* Not kutusu */
+.not{
+  background:#fff;
+  border:1px solid var(--cizgi);
+  border-radius:4px;
+  padding:18px 22px;
+  font-size:15px;
+  color:var(--soluk);
+  max-width:68ch;
+}
+.not strong{color:var(--koyu)}
+
+footer{
+  border-top:1px solid var(--cizgi);
+  margin-top:8px;
+  padding-top:26px;
+  font-size:14px;
+  color:var(--soluk);
+  max-width:68ch;
+}
+footer p{margin:0 0 6px}
+
+a:focus-visible,summary:focus-visible{
+  outline:2px solid var(--yesil);
+  outline-offset:3px;
+  border-radius:2px;
+}
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="ic">
+    <p class="marka">Bir Çiçek Koleji Anaokulu</p>
+    <h1>Kişisel Verilerin Korunması ve Gizlilik Politikası</h1>
+    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında aydınlatma metni, gizlilik politikası ve çerez politikası. Son güncelleme: Temmuz 2026.</p>
+  </div>
+</header>
+
+<div class="sayfa">
+
+  <nav class="icindekiler" aria-label="Sayfa içeriği">
+    <h2>İçindekiler</h2>
+    <ol>
+      <li><a href="#veri-sorumlusu">Veri sorumlusu</a></li>
+      <li><a href="#veriler">İşlenen kişisel veriler</a></li>
+      <li><a href="#amaclar">İşleme amaçları</a></li>
+      <li><a href="#hukuki">Hukuki sebepler</a></li>
+      <li><a href="#cocuk">Çocuklara ait veriler</a></li>
+      <li><a href="#aktarim">Veri aktarımı</a></li>
+      <li><a href="#cerez">Çerezler ve izleme</a></li>
+      <li><a href="#saklama">Saklama süreleri</a></li>
+      <li><a href="#guvenlik">Veri güvenliği</a></li>
+      <li><a href="#haklar">Haklarınız</a></li>
+      <li><a href="#basvuru">Başvuru yöntemi</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="veri-sorumlusu">
+      <h2 class="bolum">Veri sorumlusu</h2>
+      <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (&ldquo;KVKK&rdquo;) uyarınca kişisel verileriniz, veri sorumlusu sıfatıyla aşağıdaki kurum tarafından işlenmektedir.</p>
+      <div class="kunye">
+        <dl>
+          <dt>Kurum</dt><dd>Özel Bir Çiçek Koleji Anaokulu</dd>
+          <dt>Adres</dt><dd>Aydınlı Mah. Bahçeler Sk. No:45, Tuzla / İstanbul</dd>
+          <dt>Telefon</dt><dd>0216 393 54 57</dd>
+          <dt>E-posta</dt><dd>eposta@bircicekkoleji.com</dd>
+          <dt>İnternet</dt><dd>bircicekkoleji.com</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="veriler">
+      <h2 class="bolum">İşlenen kişisel veriler</h2>
+      <p>Kurumumuzla kurduğunuz ilişkinin niteliğine göre aşağıdaki veri kategorileri işlenebilmektedir.</p>
+
+      <h3>Aday veliler ve ziyaretçiler</h3>
+      <ul>
+        <li><strong>Kimlik ve iletişim:</strong> ad, soyad, telefon numarası, e-posta adresi</li>
+        <li><strong>Talep bilgileri:</strong> çocuğun yaş grubu, ikamet edilen ilçe, görüşme tercihi, randevu tarihi, ilettiğiniz sorular</li>
+        <li><strong>İşlem güvenliği:</strong> IP adresi, tarayıcı ve cihaz bilgisi, ziyaret edilen sayfalar, site içi hareketler, çerez tanımlayıcıları</li>
+      </ul>
+
+      <h3>Kayıtlı öğrenciler ve veliler</h3>
+      <ul>
+        <li><strong>Kimlik:</strong> öğrenci ve veli ad-soyad, T.C. kimlik numarası, doğum tarihi</li>
+        <li><strong>İletişim:</strong> adres, telefon, e-posta</li>
+        <li><strong>Eğitim:</strong> gelişim gözlemleri, devam-devamsızlık, değerlendirme raporları</li>
+        <li><strong>Finans:</strong> ücret, ödeme planı ve tahsilat kayıtları</li>
+        <li><strong>Görsel ve işitsel:</strong> etkinlik fotoğraf ve videoları (yalnızca açık rızanız hâlinde)</li>
+        <li><strong>Özel nitelikli veriler:</strong> sağlık bilgileri, alerji ve kronik rahatsızlık durumu, özel beslenme gereksinimleri — bu veriler yalnızca çocuğun sağlığı ve güvenliği için, açık rızanıza dayanarak ve erişimi sınırlı biçimde işlenir.</li>
+      </ul>
+    </section>
+
+    <section id="amaclar">
+      <h2 class="bolum">İşleme amaçları</h2>
+      <ul>
+        <li>Kayıt, ön kayıt ve randevu süreçlerinin yürütülmesi</li>
+        <li>Eğitim ve öğretim faaliyetlerinin planlanması ve yürütülmesi</li>
+        <li>Öğrenci gelişiminin izlenmesi ve velilerle paylaşılması</li>
+        <li>Çocuk sağlığı ve güvenliğinin korunması</li>
+        <li>Ücretlendirme, faturalandırma ve muhasebe işlemleri</li>
+        <li>Millî Eğitim Bakanlığı ve diğer resmî kurumlara karşı yükümlülüklerin yerine getirilmesi</li>
+        <li>Talep ve şikâyetlerin değerlendirilmesi, iletişim taleplerinin yanıtlanması</li>
+        <li>İnternet sitelerimizin çalıştırılması, iyileştirilmesi ve kullanım analizinin yapılması</li>
+        <li>Açık rızanız hâlinde tanıtım ve reklam faaliyetlerinin yürütülmesi</li>
+      </ul>
+    </section>
+
+    <section id="hukuki">
+      <h2 class="bolum">Hukuki sebepler</h2>
+      <p>Kişisel verileriniz, KVKK'nın 5. ve 6. maddelerinde belirtilen aşağıdaki hukuki sebeplere dayanarak işlenmektedir.</p>
+      <div class="tablo">
+        <table>
+          <thead>
+            <tr><th>Hukuki sebep</th><th>Uygulandığı hâller</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sözleşmenin kurulması veya ifası</td><td>Kayıt işlemleri, eğitim hizmetinin sunulması, ücret tahsilatı</td></tr>
+            <tr><td>Hukuki yükümlülük</td><td>MEB bildirimleri, mali mevzuat kapsamındaki kayıtlar</td></tr>
+            <tr><td>Meşru menfaat</td><td>Kurum güvenliği, hizmet kalitesinin ölçülmesi ve iyileştirilmesi</td></tr>
+            <tr><td>Açık rıza</td><td>Fotoğraf ve video paylaşımı, sağlık verileri, tanıtım amaçlı iletişim, zorunlu olmayan çerezler</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Açık rızaya dayanan işlemler için rızanızı dilediğiniz zaman geri çekebilirsiniz. Geri çekme, o ana kadar gerçekleştirilmiş işlemlerin hukuka uygunluğunu etkilemez.</p>
+    </section>
+
+    <section id="cocuk">
+      <h2 class="bolum">Çocuklara ait veriler</h2>
+      <p>Bir okul öncesi eğitim kurumu olarak çocuklara ait kişisel verileri özel bir hassasiyetle işliyoruz. Bu veriler yalnızca <strong>veli veya yasal temsilcinin</strong> bilgisi ve rızası dâhilinde işlenir.</p>
+      <p>Çocuklara ait fotoğraf ve videolar, veli tarafından ayrıca ve açıkça izin verilmediği sürece kurum dışında, sosyal medyada veya tanıtım materyallerinde kullanılmaz. Verilen izin her zaman geri alınabilir; geri alma talebinizin ardından ilgili içerik yayından kaldırılır.</p>
+      <p>Öğrenci teslim ve alım süreçlerinde çocuk güvenliği gereği isim bilgisi gizlenmiş sistemler kullanılmaktadır.</p>
+    </section>
+
+    <section id="aktarim">
+      <h2 class="bolum">Veri aktarımı</h2>
+      <p>Kişisel verileriniz, yalnızca yukarıda sayılan amaçlarla sınırlı olmak üzere aşağıdaki taraflara aktarılabilir:</p>
+      <ul>
+        <li><strong>Resmî kurumlar:</strong> Millî Eğitim Bakanlığı ve mevzuat gereği yetkili diğer kamu kurumları</li>
+        <li><strong>Hizmet sağlayıcılar:</strong> altyapı, barındırma, e-posta gönderimi, ödeme ve muhasebe hizmeti aldığımız iş ortakları</li>
+        <li><strong>Danışmanlar:</strong> hukuk ve mali müşavirlik hizmeti aldığımız kişi ve kuruluşlar</li>
+      </ul>
+
+      <h3>Yurt dışına aktarım</h3>
+      <p>İnternet altyapımızın işleyişi gereği bazı verileriniz, sunucuları yurt dışında bulunan hizmet sağlayıcılar aracılığıyla işlenmektedir. Bu aktarımlar KVKK'nın 9. maddesi kapsamında, açık rızanıza veya öngörülen uygun güvenceler ile yapılmaktadır.</p>
+      <div class="tablo">
+        <table>
+          <thead>
+            <tr><th>Hizmet sağlayıcı</th><th>İşlenen veri</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Google (Firebase, Workspace, Takvim)</td><td>Sistem verileri, randevu ve iletişim kayıtları</td></tr>
+            <tr><td>Meta Platforms</td><td>Site kullanım ve reklam ölçüm verileri</td></tr>
+            <tr><td>Wix</td><td>İnternet sitesi barındırma ve form verileri</td></tr>
+            <tr><td>Brevo</td><td>E-posta gönderim verileri</td></tr>
+            <tr><td>Bunny.net</td><td>Görsel ve video içerik dağıtımı</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="cerez">
+      <h2 class="bolum">Çerezler ve izleme teknolojileri</h2>
+      <p>İnternet sitelerimizde çerezler ve benzeri teknolojiler kullanılmaktadır. Çerezler, ziyaretiniz sırasında cihazınıza kaydedilen küçük metin dosyalarıdır.</p>
+
+      <h3>Kullandığımız çerez türleri</h3>
+      <ul>
+        <li><strong>Zorunlu çerezler:</strong> sitenin çalışması için gereklidir, devre dışı bırakılamaz.</li>
+        <li><strong>Analitik çerezler:</strong> sayfaların nasıl kullanıldığını anlamamızı sağlar.</li>
+        <li><strong>Pazarlama çerezleri:</strong> reklamlarımızın etkisini ölçmemize ve ilgili kişilere ulaşmamıza yardımcı olur.</li>
+      </ul>
+
+      <h3>Meta Pikseli</h3>
+      <p>Sitelerimizde Meta Platforms Ireland Ltd. tarafından sağlanan <strong>Meta Pikseli</strong> kullanılmaktadır. Bu teknoloji; sayfa görüntüleme, randevu talebi ve iletişim butonlarına tıklama gibi hareketleri kaydeder ve bu bilgileri Meta ile paylaşır.</p>
+      <p>Amacı, reklam kampanyalarımızın sonuçlarını ölçmek ve okulumuzla ilgilenebilecek kişilere ulaşmaktır. Bu kapsamda toplanan veriler doğrudan kimliğinizi tanımlamak için kullanılmaz.</p>
+      <p>Meta'nın veri işleme uygulamalarına <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">Meta Gizlilik Politikası</a> üzerinden ulaşabilirsiniz.</p>
+
+      <h3>Çerezleri nasıl yönetirsiniz</h3>
+      <p>Tarayıcınızın ayarlar bölümünden çerezleri silebilir veya engelleyebilirsiniz. Reklam çerezlerini <a href="https://www.youronlinechoices.com/tr/" target="_blank" rel="noopener">Your Online Choices</a> üzerinden topluca yönetebilirsiniz. Zorunlu çerezleri engellemeniz hâlinde sitenin bazı bölümleri çalışmayabilir.</p>
+    </section>
+
+    <section id="saklama">
+      <h2 class="bolum">Saklama süreleri</h2>
+      <div class="tablo">
+        <table>
+          <thead>
+            <tr><th>Veri türü</th><th>Saklama süresi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Öğrenci ve veli kayıtları</td><td>Mevzuatta öngörülen süreler boyunca</td></tr>
+            <tr><td>Mali kayıtlar</td><td>10 yıl</td></tr>
+            <tr><td>Aday veli iletişim bilgileri</td><td>Son temastan itibaren 2 yıl</td></tr>
+            <tr><td>Site kullanım ve çerez verileri</td><td>En fazla 180 gün</td></tr>
+            <tr><td>Fotoğraf ve videolar</td><td>Rıza geri çekilene kadar</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Sürelerin dolması hâlinde verileriniz silinir, yok edilir veya anonim hâle getirilir.</p>
+    </section>
+
+    <section id="guvenlik">
+      <h2 class="bolum">Veri güvenliği</h2>
+      <p>Kişisel verilerinizin hukuka aykırı işlenmesini ve verilere yetkisiz erişimi önlemek amacıyla teknik ve idari tedbirler uygulanmaktadır. Bu tedbirler arasında rol bazlı erişim yetkilendirmesi, şifreli veri aktarımı, düzenli yedekleme ve personelin gizlilik yükümlülüğü yer alır.</p>
+    </section>
+
+    <section id="haklar">
+      <h2 class="bolum">Haklarınız</h2>
+      <p>KVKK'nın 11. maddesi uyarınca veri sorumlusuna başvurarak şu haklara sahipsiniz:</p>
+      <ul>
+        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+        <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+        <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+        <li>Yurt içinde veya yurt dışında verilerin aktarıldığı üçüncü kişileri bilme</li>
+        <li>Eksik veya yanlış işlenmiş verilerin düzeltilmesini isteme</li>
+        <li>Verilerinizin silinmesini veya yok edilmesini isteme</li>
+        <li>Düzeltme, silme ve yok etme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+        <li>Otomatik sistemlerle analiz sonucu aleyhinize bir sonuç ortaya çıkmasına itiraz etme</li>
+        <li>Hukuka aykırı işleme sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+      </ul>
+    </section>
+
+    <section id="basvuru">
+      <h2 class="bolum">Başvuru yöntemi</h2>
+      <p>Haklarınıza ilişkin taleplerinizi aşağıdaki yollarla iletebilirsiniz:</p>
+      <ul>
+        <li><strong>Yazılı olarak:</strong> Aydınlı Mah. Bahçeler Sk. No:45, Tuzla / İstanbul adresine kimliğinizi tevsik eden belgelerle</li>
+        <li><strong>E-posta ile:</strong> <a href="mailto:eposta@bircicekkoleji.com">eposta@bircicekkoleji.com</a> adresine, sistemimizde kayıtlı e-posta adresinizden</li>
+      </ul>
+      <p>Başvurunuz en geç <strong>30 gün</strong> içinde ücretsiz olarak sonuçlandırılır. İşlemin ayrıca bir maliyet gerektirmesi hâlinde Kişisel Verileri Koruma Kurulu tarafından belirlenen tarifedeki ücret talep edilebilir.</p>
+      <p>Başvurunuzun reddedilmesi veya yanıtsız kalması hâlinde Kişisel Verileri Koruma Kurulu'na şikâyette bulunma hakkınız saklıdır.</p>
+    </section>
+
+    <footer>
+      <p>Bu metin Temmuz 2026 tarihinde güncellenmiştir. Mevzuat değişiklikleri veya hizmetlerimizdeki güncellemeler doğrultusunda değiştirilebilir; güncel sürüm bu sayfada yayımlanır.</p>
+      <p>© Özel Bir Çiçek Koleji Anaokulu · Montessori &amp; Orman Okulu · Tuzla / İstanbul</p>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>
