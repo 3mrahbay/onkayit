@@ -4493,34 +4493,39 @@
     function closeModal() { var ov = document.getElementById('modal-overlay'); if (ov) ov.style.display = 'none';['yuzyuze', 'online'].forEach(function (t) { var m = document.getElementById('modal-' + t); if (m) m.style.display = 'none'; }); document.body.style.overflow = ''; }
   </script>
   <!-- ═══════════════════════════════════════════════════════════════
-     BİR ÇİÇEK KOLEJİ — META PİKSEL & DÖNÜŞÜM TAKİBİ
+     BİR ÇİÇEK KOLEJİ — DÖNÜŞÜM TAKİBİ (Meta + Google)
      Kurulum: index.html dosyasının en sonunda
               </script> ile </body> ARASINA yapıştırın.
-     Not: Sayfadaki butonlara dokunmanıza gerek yok, kod
-          kendisi tüm butonları bulup bağlanır.
+     ÖNEMLİ: Daha önce yapıştırdığınız META PİKSEL bloğunu
+             SİLİN, bu blok onun yerine geçiyor.
      ═══════════════════════════════════════════════════════════════ -->
 
+  <!-- ─── Google etiketi (gtag.js) ─── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18351694916"></script>
   <script>
-<!-- ═══════════════════════════════════════════════════════════════
-     BİR ÇİÇEK KOLEJİ — META PİKSEL & DÖNÜŞÜM TAKİBİ
-     Kurulum: index.html dosyasının en sonunda
-  </script> ile </body> ARASINA yapıştırın.
-     Not: Sayfadaki butonlara dokunmanıza gerek yok, kod
-          kendisi tüm butonları bulup bağlanır.
-     ═══════════════════════════════════════════════════════════════ -->
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'AW-18351694916');
+  </script>
 
   <script>
-/* ▼▼▼▼▼ AYARLAR — SADECE BU BÖLÜMÜ DEĞİŞTİRİN ▼▼▼▼▼ */
+    /* ▼▼▼▼▼ AYARLAR ▼▼▼▼▼ */
 
-    var META_PIKSEL_ID = '1274565591531069';   // Wix sitesindeki aktif piksel
-    var GOOGLE_OLCUM_ID = '';                   // GA4 (G-XXXXXXX) — yoksa boş bırakın
-    var GOOGLE_ADS_ID = '';                   // Google Ads (AW-XXXXXXXXX) — yoksa boş bırakın
+    var META_PIKSEL_ID = '1274565591531069';   // Bircicek_Pixel
+    var GOOGLE_ADS_ID = 'AW-18351694916';     // Google Ads etiketi
+    var GOOGLE_OLCUM_ID = '';                   // GA4 (G-XXXXXXXXXX) — Analytics'ten alınca yazın
+
+    /* Google Ads dönüşüm etiketleri — Dönüşümler ekranından alınca doldurun.
+       Format: 'AW-18351694916/AbCdEfGhIjKl'                                */
+    var ADS_RANDEVU = '';   // "Okul Turu Randevusu" dönüşümü
+    var ADS_ILETISIM = '';   // "WhatsApp / Telefon" dönüşümü (isteğe bağlı)
 
     /* ▲▲▲▲▲ AYARLAR BİTTİ — AŞAĞISINA DOKUNMAYIN ▲▲▲▲▲ */
 
 
     /* ─────────────────────────────────────────────────────────
-       1. META PİKSEL TEMEL KODU
+       1. META PİKSEL
        ───────────────────────────────────────────────────────── */
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
@@ -4536,23 +4541,24 @@
     fbq('init', META_PIKSEL_ID);
     fbq('track', 'PageView');
 
+    /* GA4 varsa onu da başlat */
+    if (GOOGLE_OLCUM_ID && window.gtag) { gtag('config', GOOGLE_OLCUM_ID); }
+
 
     /* ─────────────────────────────────────────────────────────
        2. YARDIMCI FONKSİYONLAR
        ───────────────────────────────────────────────────────── */
 
-    /* Her olaya benzersiz kimlik — ileride Conversions API
-       kurulduğunda çift sayımı engeller */
     function bckaOlayKimligi() {
       return 'bcka_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     }
 
-    /* Reklam kaynağını (utm) hatırla — hangi kampanyadan geldiğini bilelim */
+    /* Reklam kaynağını hatırla — hangi kampanyadan geldi */
     function bckaKaynakBilgisi() {
       var bilgi = {};
       try {
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid']
-          .forEach(function (anahtar) {
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+          'fbclid', 'gclid', 'gbraid', 'wbraid'].forEach(function (anahtar) {
             var deger = new URLSearchParams(window.location.search).get(anahtar)
               || sessionStorage.getItem(anahtar);
             if (deger) { bilgi[anahtar] = deger; sessionStorage.setItem(anahtar, deger); }
@@ -4561,7 +4567,13 @@
       return bilgi;
     }
 
-    /* Tek noktadan olay gönderimi: Meta + Google + dataLayer */
+    /* Google Ads dönüşümü gönder */
+    function bckaGoogleDonusum(etiket) {
+      if (!etiket || !window.gtag) return;
+      try { gtag('event', 'conversion', { send_to: etiket }); } catch (e) { }
+    }
+
+    /* Tek noktadan olay gönderimi */
     function bckaOlayGonder(metaOlayi, aciklama, ekBilgi) {
       var kimlik = bckaOlayKimligi();
       var veri = Object.assign({
@@ -4579,17 +4591,10 @@
         }
       } catch (e) { }
 
-      /* Google Analytics 4 / Google Ads */
-      try {
-        if (window.gtag) {
-          window.gtag('event', aciklama, veri);
-          if (GOOGLE_ADS_ID && (metaOlayi === 'Schedule' || metaOlayi === 'Contact')) {
-            window.gtag('event', 'conversion', { send_to: GOOGLE_ADS_ID });
-          }
-        }
-      } catch (e) { }
+      /* GA4 olayı */
+      try { if (window.gtag) { gtag('event', aciklama, veri); } } catch (e) { }
 
-      /* dataLayer — ileride Google Tag Manager kurulursa hazır olsun */
+      /* dataLayer */
       try {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(Object.assign({ event: 'bcka_' + aciklama, event_id: kimlik }, veri));
@@ -4599,13 +4604,10 @@
 
     /* ─────────────────────────────────────────────────────────
        3. MEVCUT BUTONLARI BAĞLA
-       Sitede zaten trackLeadIntent() çağıran 8 buton var.
-       Bu fonksiyonu güncelliyoruz — HTML'e dokunmuyoruz.
+       Sitedeki trackLeadIntent() çağrılarını yakalar.
        ───────────────────────────────────────────────────────── */
     function trackLeadIntent(eylem) {
       bckaOlayGonder('LeadIntent', eylem, { lead_action: eylem });
-
-      /* Randevu modalı açıldıysa "ilgilenen ziyaretçi" sinyali de gönder */
       if (eylem.indexOf('tour') > -1 || eylem.indexOf('meeting') > -1) {
         bckaOlayGonder('ViewContent', 'randevu_ekrani_acildi');
       }
@@ -4613,8 +4615,7 @@
 
 
     /* ─────────────────────────────────────────────────────────
-       4. GERÇEK DÖNÜŞÜMLERİ OTOMATİK YAKALA
-       Takvim / WhatsApp / telefon linklerine kendiliğinden bağlanır
+       4. GERÇEK DÖNÜŞÜMLER
        ───────────────────────────────────────────────────────── */
     document.addEventListener('click', function (olay) {
       var link = olay.target.closest ? olay.target.closest('a') : null;
@@ -4627,16 +4628,19 @@
           : 'online_tanisma_gorusmesi';
         bckaOlayGonder('Schedule', tur, { randevu_turu: tur });
         bckaOlayGonder('Lead', tur, { randevu_turu: tur });
+        bckaGoogleDonusum(ADS_RANDEVU);
       }
 
       /* WhatsApp */
       else if (adres.indexOf('wa.me') > -1 || adres.indexOf('api.whatsapp.com') > -1) {
         bckaOlayGonder('Contact', 'whatsapp_tiklama', { iletisim_kanali: 'whatsapp' });
+        bckaGoogleDonusum(ADS_ILETISIM);
       }
 
       /* Telefon */
-      else if (adres.indexOf('tel:') === 0 || adres.indexOf('tel:') > -1) {
+      else if (adres.indexOf('tel:') > -1) {
         bckaOlayGonder('Contact', 'telefon_tiklama', { iletisim_kanali: 'telefon' });
+        bckaGoogleDonusum(ADS_ILETISIM);
       }
 
       /* Instagram */
@@ -4647,33 +4651,26 @@
 
 
     /* ─────────────────────────────────────────────────────────
-       5. İLGİLİ ZİYARETÇİ SİNYALİ
+       5. İLGİLİ ZİYARETÇİ
        Sayfayı gerçekten okuyan kişiyi işaretler.
-       Remarketing kitlesinin kalitesini ciddi biçimde yükseltir.
        ───────────────────────────────────────────────────────── */
     (function () {
       var gonderildi = false;
-
       function ilgiliZiyaretci(sebep) {
         if (gonderildi) return;
         gonderildi = true;
         bckaOlayGonder('ViewContent', 'ilgili_ziyaretci', { ilgi_sebebi: sebep });
       }
-
-      /* Sayfanın yarısını gördüyse */
       window.addEventListener('scroll', function () {
         var toplam = document.body.scrollHeight - window.innerHeight;
         if (toplam > 0 && (window.scrollY / toplam) >= 0.5) ilgiliZiyaretci('sayfa_yarisi');
       }, { passive: true });
-
-      /* Ya da 45 saniye kaldıysa */
       setTimeout(function () { ilgiliZiyaretci('45_saniye'); }, 45000);
     })();
 
 
     /* ─────────────────────────────────────────────────────────
        6. VİDEO İZLEME
-       Tanıtım videosunu açan kişi çok değerli bir remarketing hedefi
        ───────────────────────────────────────────────────────── */
     (function () {
       var eskiVideo = window.openVideoModal;
@@ -4681,7 +4678,6 @@
         bckaOlayGonder('ViewContent', 'tanitim_videosu_izlendi');
         if (typeof eskiVideo === 'function') return eskiVideo.apply(this, arguments);
       };
-
       var eskiFark = window.openFarkVideo;
       window.openFarkVideo = function () {
         bckaOlayGonder('ViewContent', 'fark_videosu_izlendi');
