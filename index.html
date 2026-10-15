@@ -4460,6 +4460,8 @@
       · bircicekkoleji.com</div>
     <div class="footer-sub" style="margin-top:4px">Aydınlı Mahallesi Bahçeler Sk. No: 45 Tuzla - İstanbul · 0555 103 54
       57 · <a href="mailto:eposta@bircicekkoleji.com" style="color:#9ab89a">eposta@bircicekkoleji.com</a></div>
+    <div class="footer-sub" style="margin-top:4px"><a href="gizlilik.html" style="color:#9ab89a">Gizlilik ve çerez politikası</a> ·
+      <button type="button" class="cerez-ac" data-cerez-ac>Çerez tercihleri</button></div>
     <div style="margin-top:24px;border-radius:14px;overflow:hidden;max-width:600px;margin-left:auto;margin-right:auto">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.5!2d29.3!3d40.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zQXlkxLFubMSxIE1haGFsbGVzaSBCYWjDp2VsZXIgU2suIE5vOiA0NSBUdXpsYQ!5e0!3m2!1str!2str!4v1234567890"
@@ -4507,12 +4509,12 @@
      ═══════════════════════════════════════════════════════════════ -->
 
   <!-- ─── Google etiketi (gtag.js) ─── -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18351694916"></script>
   <script>
+    /* Ölçüm etiketleri yalnızca ziyaretçi çerez onayı verdikten sonra yüklenir (KVKK). */
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
     gtag('js', new Date());
-    gtag('config', 'AW-18351694916');
   </script>
 
   <script>
@@ -4533,22 +4535,46 @@
     /* ─────────────────────────────────────────────────────────
        1. META PİKSEL
        ───────────────────────────────────────────────────────── */
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', META_PIKSEL_ID);
-    fbq('track', 'PageView');
-
-    /* GA4 varsa onu da başlat */
-    if (GOOGLE_OLCUM_ID && window.gtag) { gtag('config', GOOGLE_OLCUM_ID); }
+    var BCKA_ONAY_ANAHTARI = 'bcka_cerez_onayi_v1';
+    var bckaYuklenen = { analitik: false, pazarlama: false };
+    function bckaBetikYukle(adres) {
+      var b = document.createElement('script'); b.async = true; b.src = adres;
+      document.head.appendChild(b);
+    }
+    function bckaEtiketleriYukle(tercih) {
+      if (!tercih) return;
+      if (tercih.analitik && !bckaYuklenen.analitik && GOOGLE_OLCUM_ID) {
+        bckaYuklenen.analitik = true;
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        if (!bckaYuklenen.pazarlama) bckaBetikYukle('https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_OLCUM_ID);
+        gtag('config', GOOGLE_OLCUM_ID, { anonymize_ip: true });
+      }
+      if (tercih.pazarlama && !bckaYuklenen.pazarlama) {
+        bckaYuklenen.pazarlama = true;
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+        if (!bckaYuklenen.analitik) bckaBetikYukle('https://www.googletagmanager.com/gtag/js?id=' + GOOGLE_ADS_ID);
+        gtag('config', GOOGLE_ADS_ID);
+        !function (f, b, e, v, n, t, s) {
+          if (f.fbq) return; n = f.fbq = function () {
+            n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+          };
+          if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+          n.queue = []; t = b.createElement(e); t.async = !0;
+          t.src = v; s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', META_PIKSEL_ID);
+        fbq('track', 'PageView');
+      }
+    }
+    function bckaOnayOku() {
+      try { var d = localStorage.getItem(BCKA_ONAY_ANAHTARI); return d ? JSON.parse(d) : null; } catch (e) { return null; }
+    }
+    function bckaOnayKaydet(tercih) {
+      try { localStorage.setItem(BCKA_ONAY_ANAHTARI, JSON.stringify(tercih)); } catch (e) { }
+    }
+    bckaEtiketleriYukle(bckaOnayOku());
 
 
     /* ─────────────────────────────────────────────────────────
@@ -4634,9 +4660,12 @@
           : 'online_tanisma_gorusmesi';
         // Takvime geçiş, randevunun tamamlandığını kanıtlamaz.
         // Doğrulanmış randevu ve başvurular ayrı takip edilmelidir.
-        bckaOlayGonder('LeadIntent', 'appointment_click', {
+        // Reklam sistemleri için randevu adımı: takvim sayfasına geçiş.
+        // Gerçekleşen tur sayısı haftalık tabloda ayrıca izlenir.
+        bckaOlayGonder('Schedule', 'appointment_click', {
           randevu_turu: tur, funnel_stage: 'intent'
         });
+        bckaGoogleDonusum(ADS_RANDEVU);
       }
 
       /* WhatsApp */
@@ -4694,10 +4723,85 @@
     })();
   </script>
 
-  <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1274565591531069&ev=PageView&noscript=1" alt="" />
-  </noscript>
+
+  <!-- ═══════════ ÇEREZ ONAYI (KVKK) ═══════════ -->
+  <div id="cerez-onayi" class="cerez" role="dialog" aria-labelledby="cerez-baslik" hidden>
+    <div class="cerez-kutu">
+      <strong id="cerez-baslik">Çerez tercihleriniz</strong>
+      <p>Siteyi çalıştırmak için zorunlu çerezleri kullanırız. İzin verirseniz ziyaretleri ölçmek (Google Analytics) ve
+        okulumuzu ilgilenen velilere göstermek (Google Ads, Meta) için de çerez kullanırız; bu hizmetler verileri yurt
+        dışına aktarabilir. Ayrıntılar: <a href="gizlilik.html">Gizlilik ve çerez politikası</a>.</p>
+      <div class="cerez-secenek" hidden>
+        <label><input type="checkbox" id="cerez-analitik"> Ölçüm çerezleri (Google Analytics)</label>
+        <label><input type="checkbox" id="cerez-pazarlama"> Pazarlama çerezleri (Google Ads, Meta)</label>
+      </div>
+      <div class="cerez-dugmeler">
+        <button type="button" data-cerez="kabul" class="cerez-btn cerez-ana">Kabul et</button>
+        <button type="button" data-cerez="red" class="cerez-btn">Reddet</button>
+        <button type="button" data-cerez="secenek" class="cerez-btn cerez-ince">Seçenekler</button>
+        <button type="button" data-cerez="kaydet" class="cerez-btn cerez-ana" hidden>Seçimi kaydet</button>
+      </div>
+    </div>
+  </div>
+  <style>
+    .cerez { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10000; padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px)); pointer-events: none; }
+    .cerez-kutu { pointer-events: auto; max-width: 720px; margin: 0 auto; background: var(--white); color: var(--g-dark); border: 1px solid var(--g-pale); border-radius: 16px; box-shadow: 0 14px 36px rgba(23, 58, 42, .22); padding: 16px 18px; display: grid; gap: 10px; font-family: var(--sans); font-size: .92rem; line-height: 1.5; }
+    .cerez-kutu strong { font-size: 1rem; }
+    .cerez-kutu a { color: var(--g-mid); }
+    .cerez-secenek { display: grid; gap: 6px; }
+    .cerez [hidden] { display: none !important; }
+    .cerez-secenek label { display: flex; gap: 8px; align-items: center; }
+    .cerez-dugmeler { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cerez-btn { font: inherit; font-weight: 600; border-radius: 999px; padding: 9px 16px; border: 1px solid var(--g-mid); background: var(--white); color: var(--g-dark); cursor: pointer; }
+    .cerez-ana { background: var(--g-mid); color: #fff; }
+    .cerez-ince { border-color: transparent; text-decoration: underline; }
+    .cerez-btn:focus-visible { outline: 3px solid var(--y-accent); outline-offset: 2px; }
+    .cerez-ac { background: none; border: 0; color: #9ab89a; text-decoration: underline; font: inherit; cursor: pointer; padding: 0; }
+  </style>
+  <script>
+    (function () {
+      var kutu = document.getElementById('cerez-onayi');
+      if (!kutu) return;
+      function goster() {
+        var t = bckaOnayOku() || {};
+        document.getElementById('cerez-analitik').checked = !!t.analitik;
+        document.getElementById('cerez-pazarlama').checked = !!t.pazarlama;
+        kutu.hidden = false;
+      }
+      function karar(tercih) {
+        tercih.zaman = Date.now();
+        bckaOnayKaydet(tercih);
+        kutu.hidden = true;
+        bckaEtiketleriYukle(tercih);
+      }
+      kutu.addEventListener('click', function (o) {
+        var islem = o.target && o.target.getAttribute('data-cerez');
+        if (islem === 'kabul') karar({ analitik: true, pazarlama: true });
+        else if (islem === 'red') karar({ analitik: false, pazarlama: false });
+        else if (islem === 'secenek') {
+          kutu.querySelector('.cerez-secenek').hidden = false;
+          kutu.querySelector('[data-cerez="kaydet"]').hidden = false;
+          o.target.hidden = true;
+        } else if (islem === 'kaydet') karar({
+          analitik: document.getElementById('cerez-analitik').checked,
+          pazarlama: document.getElementById('cerez-pazarlama').checked
+        });
+      });
+      document.querySelectorAll('[data-cerez-ac]').forEach(function (b) { b.addEventListener('click', goster); });
+      if (!bckaOnayOku()) goster();
+    })();
+
+    /* Google profili ve reklam bağlantıları: #okul-turu ve #online-gorusme randevu penceresini açar */
+    (function () {
+      function hashAc() {
+        var h = (location.hash || '').toLowerCase();
+        if (h === '#okul-turu' || h === '#randevu') { trackLeadIntent('link_school_tour'); openModal('yuzyuze'); }
+        else if (h === '#online-gorusme') { trackLeadIntent('link_online_meeting'); openModal('online'); }
+      }
+      window.addEventListener('hashchange', hashAc);
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hashAc); else hashAc();
+    })();
+  </script>
 
   <!-- ═══════════ DÖNÜŞÜM TAKİBİ SONU ═══════════ -->
 </body>
